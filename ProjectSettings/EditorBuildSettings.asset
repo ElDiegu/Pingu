@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Pingu.unity
     guid: 543aac571e4e10746ae81c2c73112c5c
+  - enabled: 1
+    path: Assets/Scenes/PinguDice.unity
+    guid: 7a2aac75488c4604a9b820983c37cfd0
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: a023c7f368184a44f812bd02022e9d07,
       type: 2}
