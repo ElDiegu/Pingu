@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PinguDice : MonoBehaviour
@@ -140,7 +141,7 @@ public class PinguDice : MonoBehaviour
     }
     public void SalirSi()
     {
-
+        SceneManager.LoadScene("Pingu");
     }
     public void SalirNo()
     {
