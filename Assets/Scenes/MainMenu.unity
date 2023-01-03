@@ -255,6 +255,14 @@ MonoBehaviour:
     porcentaje: 1
     loop: 0
     source: {fileID: 0}
+  - name: Chill
+    clip: {fileID: 8300000, guid: dfc66ed65139a604e8061e0474e389ab, type: 3}
+    musica: 1
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!4 &307130829
 Transform:
   m_ObjectHideFlags: 0

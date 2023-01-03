@@ -21,7 +21,6 @@ public class AudioManager : MonoBehaviour
     {
         volumeValue = 0.5f;
         musicValue = 0.5f;
-        Debug.LogWarning("Awake");
         if (instance == null)
             instance = this;
         else
@@ -49,10 +48,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-
-        Debug.LogWarning("Start del audiomanager");
         Play("Chill");
-
     }
 
     public void Play(String name)

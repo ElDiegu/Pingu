@@ -35,7 +35,6 @@ public class PinguDice : MonoBehaviour
         for (int i = 0; i < ronda; i++)
         {
             yield return new WaitForSeconds(0.5f);
-            print(secuencia[i]);
             ColorShine[secuencia[i]].SetActive(true);
             Vibrator.Vibrate(450);
             yield return new WaitForSeconds(0.5f);
@@ -56,7 +55,6 @@ public class PinguDice : MonoBehaviour
         if (secuencia[colorTurno] == 0)
         {
             colorTurno++;
-            print("Correct");
             ComprobateRonda();
         }
         else
@@ -70,7 +68,6 @@ public class PinguDice : MonoBehaviour
         if (secuencia[colorTurno] == 1)
         {
             colorTurno++;
-            print("Correct");
             ComprobateRonda();
         }
         else
@@ -84,7 +81,6 @@ public class PinguDice : MonoBehaviour
         if (secuencia[colorTurno] == 2)
         {
             colorTurno++;
-            print("Correct");
             ComprobateRonda();
         }
         else
@@ -98,7 +94,6 @@ public class PinguDice : MonoBehaviour
         if (secuencia[colorTurno] == 3)
         {
             colorTurno++;
-            print("Correct");
             ComprobateRonda();
         }
         else
