@@ -30,6 +30,7 @@ public class PinguDice : MonoBehaviour
     IEnumerator PrintSecuencia()
     {
         DeactivatePingus();
+        yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < ronda; i++)
         {
             yield return new WaitForSeconds(0.5f);
@@ -50,6 +51,7 @@ public class PinguDice : MonoBehaviour
 
     public void Color1Pressed()
     {
+        StartCoroutine(ActivateShine(0));
         if (secuencia[colorTurno] == 0)
         {
             colorTurno++;
@@ -63,6 +65,7 @@ public class PinguDice : MonoBehaviour
     }
     public void Color2Pressed()
     {
+        StartCoroutine(ActivateShine(1));
         if (secuencia[colorTurno] == 1)
         {
             colorTurno++;
@@ -76,6 +79,7 @@ public class PinguDice : MonoBehaviour
     }
     public void Color3Pressed()
     {
+        StartCoroutine(ActivateShine(2));
         if (secuencia[colorTurno] == 2)
         {
             colorTurno++;
@@ -89,6 +93,7 @@ public class PinguDice : MonoBehaviour
     }
     public void Color4Pressed()
     {
+        StartCoroutine(ActivateShine(3));
         if (secuencia[colorTurno] == 3)
         {
             colorTurno++;
@@ -99,6 +104,12 @@ public class PinguDice : MonoBehaviour
         {
             GameOver();
         }
+    }
+    IEnumerator ActivateShine(int num)
+    {
+        ColorShine[num].SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        ColorShine[num].SetActive(false);
     }
     public void ComprobateRonda()
     {
@@ -112,7 +123,7 @@ public class PinguDice : MonoBehaviour
     public void GameOver()
     {
         DeactivatePingus();
-        Vibrator.Vibrate(450);
+        Vibrator.Vibrate(700);
         GameOverWindow.SetActive(true);
     }
     public void VolverJugar()
@@ -125,6 +136,7 @@ public class PinguDice : MonoBehaviour
     {
         DeactivatePingus();
         SalirWindow.SetActive(true);
+        Time.timeScale = 0f;
     }
     public void SalirSi()
     {
@@ -134,6 +146,7 @@ public class PinguDice : MonoBehaviour
     {
         ActivatePingus();
         SalirWindow.SetActive(false);
+        Time.timeScale = 1f;
     }
     public void DeactivatePingus()
     {
