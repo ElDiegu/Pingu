@@ -1250,6 +1250,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1835100781}
+        m_TargetAssemblyTypeName: PinguScript, Assembly-CSharp
+        m_MethodName: repetirVoz
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &429193778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2583,6 +2595,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623774564}
   m_CullTransparentMesh: 1
+--- !u!1 &647762237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1104751823927148627, guid: 91ff90e3728df27408c8d2c9e1107e0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2141042079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &661829208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4758,7 +4776,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1234329870}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1835100781}
+        m_TargetAssemblyTypeName: PinguScript, Assembly-CSharp
+        m_MethodName: alimentarPingu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1234329870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6611,6 +6641,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!1 &1584173393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5042768002820726217, guid: 91ff90e3728df27408c8d2c9e1107e0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2141042079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1591300888
 GameObject:
   m_ObjectHideFlags: 0
@@ -6758,7 +6794,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 74562587}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 150
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -7487,6 +7523,43 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2141042079}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1835100780
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835100778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7673a557b2e40e644bd3eddf7b49f946, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1835100781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835100778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fd7d7833f52404e9ba56a1d17528bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  state: 0
+  fish: {fileID: 647762237}
+  mic: {fileID: 1584173393}
+  audioSourcePingu: {fileID: 74562590}
 --- !u!1 &1867470548
 GameObject:
   m_ObjectHideFlags: 0
@@ -9060,7 +9133,7 @@ PrefabInstance:
     - target: {fileID: -1104751823927148627, guid: 91ff90e3728df27408c8d2c9e1107e0b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 743085981524008602, guid: 91ff90e3728df27408c8d2c9e1107e0b,
         type: 3}
@@ -9117,6 +9190,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5203685203401538804, guid: 91ff90e3728df27408c8d2c9e1107e0b,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5671051090832017536, guid: 91ff90e3728df27408c8d2c9e1107e0b,
         type: 3}
       propertyPath: m_IsActive
@@ -9125,7 +9203,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91ff90e3728df27408c8d2c9e1107e0b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1835100780}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91ff90e3728df27408c8d2c9e1107e0b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1835100781}
   m_SourcePrefab: {fileID: 100100000, guid: 91ff90e3728df27408c8d2c9e1107e0b, type: 3}
 --- !u!1 &2141042080 stripped
 GameObject:

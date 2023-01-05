@@ -44,13 +44,18 @@ public class ChangeColor : MonoBehaviour
                 else if (indexSombreros == 0)
                     indexSombreros = 4;
                 if(indexSombreros != 4){
+                    pinguPelo.SetActive(false);
                     for(int i = 0; i < 4; i++){
-                        if(i == indexSombreros)
+                        if(i == indexSombreros){
                             gorros[i].SetActive(true);
-                        else
+                            if(indexSombreros == 2){
+                                pinguPelo.SetActive(true);
+                            }
+                        }else
                             gorros[i].SetActive(false);
                     }
                 }else{
+                    pinguPelo.SetActive(true);
                     for(int i = 0; i < 4; i++){
                         gorros[i].SetActive(false);
                     }
@@ -94,13 +99,18 @@ public class ChangeColor : MonoBehaviour
                 else if (indexSombreros == 4)
                     indexSombreros = 0;
                 if(indexSombreros != 4){
+                    pinguPelo.SetActive(false);
                     for(int i = 0; i < 4; i++){
-                        if(i == indexSombreros)
+                        if(i == indexSombreros){
                             gorros[i].SetActive(true);
-                        else
+                            if(indexSombreros == 2){
+                                pinguPelo.SetActive(true);
+                            }
+                        }else
                             gorros[i].SetActive(false);
                     }
                 }else{
+                    pinguPelo.SetActive(true);
                     for(int i = 0; i < 4; i++){
                         gorros[i].SetActive(false);
                     }

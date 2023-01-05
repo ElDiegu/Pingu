@@ -45,7 +45,13 @@ public class AudioRecorder : MonoBehaviour
 
         //Play recording
         audioSource.clip = recording;
-        audioSource.Play();
+        StartCoroutine(WaitToSpeak());
 
+    }
+
+    private IEnumerator WaitToSpeak()
+    {
+        yield return new WaitForSeconds(0.4f);
+        audioSource.Play();
     }
 }
