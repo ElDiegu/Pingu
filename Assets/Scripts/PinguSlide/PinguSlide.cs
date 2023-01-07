@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class PinguSlide : MonoBehaviour
 {
-    public int HP;
+    [Header("Pingu Data")]
+    [SerializeField] private int _HP;
     [SerializeField] private GameObject _canvas;
     [SerializeField] private GameObject _hitbox;
     [SerializeField] private float _speed;
+
+    [Header("Gyroscope Logic")]
+    [SerializeField] private Gyroscope _gyroscope;
+    [SerializeField] private Quaternion _gyroRotation;
+    [SerializeField] private bool _gyroActive;
+
+    [Header("Touch Screen Logic")]
+    [SerializeField] private Vector2 _touchStartPos;
+    [SerializeField] private float _touchDirection;
+
     void Start()
     {
-        
+        EnableGyro();
     }
 
     // Update is called once per frame
@@ -20,19 +31,19 @@ public class PinguSlide : MonoBehaviour
         if(Input.touchCount > 0)
         {
             Touch _touch = Input.GetTouch(0);
-            Vector2 _startPos = new Vector2();
-            
-
             switch (_touch.phase)
             {
                 case TouchPhase.Began:
-                    _startPos = _touch.position;
+                    _touchStartPos = _touch.position;
+                    Debug.Log("_startPos set at:" + _touchStartPos);
                     break;
                 case TouchPhase.Moved:
-                    var _direction = _touch.position - _startPos;
-                    MovePingu(_direction.x);
+                    _touchDirection = _touch.position.x - _touchStartPos.x;
                     break;
             }
+
+            Debug.Log(_touchDirection / (_canvas.GetComponent<RectTransform>().rect.width / 2));
+            MovePingu(_touchDirection / (_canvas.GetComponent<RectTransform>().rect.width / 2));
         }
         #endregion
 
@@ -47,16 +58,44 @@ public class PinguSlide : MonoBehaviour
             MovePingu(1.0f);
         }
         #endregion
+
+        #region Gyroscope Input Control
+        if (_gyroActive)
+        {
+            _gyroRotation = _gyroscope.attitude;
+
+            MovePingu(_gyroRotation.x);
+        }
+        #endregion
+    }
+
+    private void EnableGyro()
+    {
+        if (_gyroActive) return;
+
+        if (SystemInfo.supportsGyroscope)
+        {
+            _gyroscope = Input.gyro;
+            _gyroscope.enabled = true;
+        }
+
+        _gyroActive = _gyroscope.enabled;
     }
 
     public void SufferDamage(int damage)
     {
-        HP -= damage;
-    }
+        _HP -= damage;
 
+        if (_HP <= 0) PinguSlideManager.GameOver();
+    }
     private void MovePingu(float direction)
     {
-        Debug.Log("Move Pingu.");
+        if (!PinguSlideManager.playing) return;
+        var _canvasSize = _canvas.GetComponent<RectTransform>().rect.width - 50;
+
+        if (transform.localPosition.x > (_canvasSize - gameObject.GetComponent<RectTransform>().rect.width) / 2 && direction > 0) return;
+        if(transform.localPosition.x < (-_canvasSize + gameObject.GetComponent<RectTransform>().rect.width) / 2 && direction < 0) return;
+
         transform.Translate(new Vector3(direction, 0, 0) * _speed * Time.deltaTime);
     }
 }

@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Obstacle : MonoBehaviour
+public class Coin : MonoBehaviour
 {
-    [SerializeField] private Image _image;
-    [SerializeField] private List<Sprite> _sprites;
+    // Start is called before the first frame update
     void Start()
     {
-        _image.sprite = _sprites[Random.Range(0, _sprites.Count)];
+        
     }
 
     // Update is called once per frame
@@ -34,10 +32,15 @@ public class Obstacle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerEnter");
         if (collision.gameObject.tag != "Player") return;
+        Debug.Log("Coin Collected");
+        PinguSlideManager.coinsCollected++;
+        Destroy(gameObject);
+    }
 
-        collision.gameObject.GetComponent<PinguSlide>().SufferDamage(_sprites.IndexOf(_image.sprite) + 1);
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Coin destroyed");
         Destroy(gameObject);
     }
 }

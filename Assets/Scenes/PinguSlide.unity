@@ -213,10 +213,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042945bee9da60c438643e0ad83f941d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 5
+  _HP: 5
   _canvas: {fileID: 1018489650}
   _hitbox: {fileID: 0}
   _speed: 300
+  _gyroRotation: {x: 0, y: 0, z: 0, w: 0}
+  _gyroActive: 0
+  _touchStartPos: {x: 0, y: 0}
+  _touchDirection: 0
 --- !u!61 &152060613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -306,13 +310,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72b7051caf4fb54f8f610e434c61520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obstaclePrefab: {fileID: 8138065775988888394, guid: 528e2a6797f4c664387cea5479810c61,
-    type: 3}
-  _obstacleDelay: 3
-  _spawnPoint: {fileID: 487433187}
-  _canvas: {fileID: 1018489650}
   _speed: 250
   playing: 0
+  _canvas: {fileID: 1018489650}
+  _obstaclePrefab: {fileID: 8138065775988888394, guid: 528e2a6797f4c664387cea5479810c61,
+    type: 3}
+  _coinPrefab: {fileID: 4831254864543185648, guid: 30405fe9a094b6445befec98cec19bc8,
+    type: 3}
+  _coinsCollected: 0
+  _spawnPoint: {fileID: 487433187}
+  _obstacleDelay: 3
 --- !u!1 &487433187
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -480, y: 100}
+  m_AnchoredPosition: {x: -480, y: 99.99988}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &579053953
