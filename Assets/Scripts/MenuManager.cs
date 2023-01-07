@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public int gameStartScene;
+    [SerializeField] GameObject SalirWindow;
 
     void Start()
     {
@@ -18,7 +19,16 @@ public class MenuManager : MonoBehaviour
     }
     public void QuitGame()
     {
+        SalirWindow.SetActive(true);
+    }
+    public void BotonSI()
+    {
         Application.Quit();
+    }
+
+    public void BotonNO()
+    {
+        SalirWindow.SetActive(false);
     }
 
     public void playSlider()
