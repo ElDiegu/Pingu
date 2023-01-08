@@ -57,24 +57,35 @@ public class GameManager : MonoBehaviour
     }
     public static void SaveData()
     {
+        StringBuilder colorList = new StringBuilder();
+        StringBuilder eyeList = new StringBuilder();
+        StringBuilder hatList = new StringBuilder();
+
         PlayerPrefs.SetInt("savedData", 1);
         PlayerPrefs.SetInt("coins", coins);
 
-        StringBuilder colorList = new StringBuilder();
-        foreach (KeyValuePair<Material, bool> color in bodyColor) if(color.Value == true) colorList.Append(Instance.auxiliarBodyColor.IndexOf(color.Key) + "\n");
+        
+
+        foreach (KeyValuePair<Material, bool> color in bodyColor) if (color.Value == true) { colorList.Append(Instance.auxiliarBodyColor.IndexOf(color.Key) + "\n"); Debug.Log("Color saved: " + Instance.auxiliarBodyColor.IndexOf(color.Key)); }
         PlayerPrefs.SetString("bodyColor", colorList.ToString());
+        Debug.Log(colorList.ToString());
 
-        StringBuilder eyeList = new StringBuilder();
-        foreach (KeyValuePair<Material, bool> eye in bodyColor) if (eye.Value == true) colorList.Append(Instance.auxiliarEyes.IndexOf(eye.Key) + "\n");
+        
+        foreach (KeyValuePair<Material, bool> eye in eyes) if (eye.Value == true) { eyeList.Append(Instance.auxiliarEyes.IndexOf(eye.Key) + "\n"); Debug.Log("Eye saved: " + Instance.auxiliarEyes.IndexOf(eye.Key)); }
         PlayerPrefs.SetString("eyes", eyeList.ToString());
+        Debug.Log(eyeList.ToString());
 
-        StringBuilder hatList = new StringBuilder();
-        foreach (KeyValuePair<int, bool> hat in hats) if (hat.Value == true) colorList.Append(hat.Key + "\n");
+        
+        foreach (KeyValuePair<int, bool> hat in hats) if (hat.Value == true) { hatList.Append(hat.Key + "\n"); Debug.Log("Hat saved: " + hat.Key); }
         PlayerPrefs.SetString("hats", hatList.ToString());
+        Debug.Log (hatList.ToString());
+
+        Debug.Log("Saved data");
     }
     private static void LoadData()
     {
         if (!PlayerPrefs.HasKey("savedData")) return;
+        Debug.Log("Loading data");
 
         coins = PlayerPrefs.GetInt("coins");
 
@@ -82,18 +93,26 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < colorList.Length - 1; i++)
         {
             bodyColor[Instance.auxiliarBodyColor[int.Parse(colorList[i])]] = true;
+            Debug.Log("Body Color activated: " + Instance.auxiliarBodyColor[int.Parse(colorList[i])]);
         }
 
+        foreach(KeyValuePair<Material, bool> color in bodyColor) Debug.Log(color.Key + ":" + color.Value);
+
         string[] eyeList = PlayerPrefs.GetString("eyes").Split("\n");
+        Debug.Log(eyeList.Length);
         for (int i = 0; i < eyeList.Length - 1; i++)
         {
             eyes[Instance.auxiliarEyes[int.Parse(eyeList[i])]] = true;
+            Debug.Log("Eye activated: " + Instance.auxiliarEyes[int.Parse(eyeList[i])]);
         }
 
         string[] hatList = PlayerPrefs.GetString("hats").Split("\n");
         for (int i = 0; i < hatList.Length - 1; i++)
         {
             hats[int.Parse(hatList[i])] = true;
+            Debug.Log("Hat activated: " + hats[int.Parse(hatList[i])]);
         }
+
+        foreach (KeyValuePair<int, bool> hat in hats) Debug.Log(hat.Key + ":" + hat.Value);
     }
 }
