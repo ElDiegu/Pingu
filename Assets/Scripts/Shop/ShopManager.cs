@@ -23,6 +23,7 @@ public class ShopManager : MonoBehaviour
     public void BuyColor(Material color)
     {
         if (GameManager.coins < 10) return;
+        FindObjectOfType<AudioManager>().Play("BuyItem");
         GameManager.bodyColor[color] = true;
         GameManager.coins -= 10;
         _buyButton.SetActive(false);
@@ -31,6 +32,7 @@ public class ShopManager : MonoBehaviour
     public void BuyHat(int hat)
     {
         if (GameManager.coins < 20) return;
+        FindObjectOfType<AudioManager>().Play("BuyItem");
         GameManager.hats[hat] = true;
         GameManager.coins -= 20;
         _buyButton.SetActive(false);
@@ -39,6 +41,7 @@ public class ShopManager : MonoBehaviour
     public void BuyEyes(Material material)
     {
         if (GameManager.coins < 5) return;
+        FindObjectOfType<AudioManager>().Play("BuyItem");
         GameManager.eyes[material] = true;
         GameManager.coins -= 5;
         _buyButton.SetActive(false);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PinguScript : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PinguScript : MonoBehaviour
     public GameObject fish;
     public GameObject mic;
     public AudioSource audioSourcePingu;
+    [SerializeField] Slider hambre;
 
     private int idle = 1;
     private int done = 0;
@@ -37,6 +39,7 @@ public class PinguScript : MonoBehaviour
             case 1:
                 //animación de alimentar
                 fish.SetActive(true);
+                hambre.value += 5;
                 anim.Play("PinguEating");
                 state = 0;
                 //fish.SetActive(false);
