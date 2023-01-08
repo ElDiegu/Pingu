@@ -35,8 +35,22 @@ public class PinguDice : MonoBehaviour
         for (int i = 0; i < ronda; i++)
         {
             yield return new WaitForSeconds(0.5f);
-            print(secuencia[i]);
             ColorShine[secuencia[i]].SetActive(true);
+            if (secuencia[i] == 0)
+            {
+                FindObjectOfType<AudioManager>().Play("Piplup");
+            }else if(secuencia[i] == 1)
+            {
+                FindObjectOfType<AudioManager>().Play("PiplupAgudo");
+            }
+            else if (secuencia[i] == 2)
+            {
+                FindObjectOfType<AudioManager>().Play("PiplupGrave");
+            }
+            else if (secuencia[i] == 3)
+            {
+                FindObjectOfType<AudioManager>().Play("PiplupAgudo2");
+            }
             Vibrator.Vibrate(450);
             yield return new WaitForSeconds(0.5f);
             ColorShine[secuencia[i]].SetActive(false);
@@ -55,8 +69,8 @@ public class PinguDice : MonoBehaviour
         StartCoroutine(ActivateShine(0));
         if (secuencia[colorTurno] == 0)
         {
+            FindObjectOfType<AudioManager>().Play("Piplup");
             colorTurno++;
-            print("Correct");
             ComprobateRonda();
         }
         else
@@ -69,8 +83,8 @@ public class PinguDice : MonoBehaviour
         StartCoroutine(ActivateShine(1));
         if (secuencia[colorTurno] == 1)
         {
+            FindObjectOfType<AudioManager>().Play("PiplupAgudo");
             colorTurno++;
-            print("Correct");
             ComprobateRonda();
         }
         else
@@ -83,8 +97,8 @@ public class PinguDice : MonoBehaviour
         StartCoroutine(ActivateShine(2));
         if (secuencia[colorTurno] == 2)
         {
+            FindObjectOfType<AudioManager>().Play("PiplupGrave");
             colorTurno++;
-            print("Correct");
             ComprobateRonda();
         }
         else
@@ -97,8 +111,8 @@ public class PinguDice : MonoBehaviour
         StartCoroutine(ActivateShine(3));
         if (secuencia[colorTurno] == 3)
         {
+            FindObjectOfType<AudioManager>().Play("PiplupAgudo2");
             colorTurno++;
-            print("Correct");
             ComprobateRonda();
         }
         else
@@ -123,6 +137,7 @@ public class PinguDice : MonoBehaviour
 
     public void GameOver()
     {
+        FindObjectOfType<AudioManager>().Play("WrongAnswer");
         DeactivatePingus();
         Vibrator.Vibrate(700);
         GameOverWindow.SetActive(true);

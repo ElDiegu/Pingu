@@ -331,6 +331,70 @@ MonoBehaviour:
     porcentaje: 1
     loop: 0
     source: {fileID: 0}
+  - name: Chill
+    clip: {fileID: 8300000, guid: dfc66ed65139a604e8061e0474e389ab, type: 3}
+    musica: 1
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BuyItem
+    clip: {fileID: 8300000, guid: 2a491c3e34ea27f41a1960197a791643, type: 3}
+    musica: 0
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CorrectAnswer
+    clip: {fileID: 8300000, guid: 1c5bc3077e8f9ad4180d9f7a7c59c51d, type: 3}
+    musica: 0
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WrongAnswer
+    clip: {fileID: 8300000, guid: fec9f23bd7cf73f49bb4a27768d15b72, type: 3}
+    musica: 0
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Piplup
+    clip: {fileID: 8300000, guid: d0f1cc72f5561ad4f85e4886d7ca2220, type: 3}
+    musica: 0
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PiplupAgudo
+    clip: {fileID: 8300000, guid: f1644a371c1c5604aae480e4c7d5998c, type: 3}
+    musica: 0
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PiplupAgudo2
+    clip: {fileID: 8300000, guid: ad8d786a3c25330429e6ab680ac162a4, type: 3}
+    musica: 0
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PiplupGrave
+    clip: {fileID: 8300000, guid: b40338e50b2fcce47bd6532773a6dfa0, type: 3}
+    musica: 0
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &307130829
 Transform:
   m_ObjectHideFlags: 0
