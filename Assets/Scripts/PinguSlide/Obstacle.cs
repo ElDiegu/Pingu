@@ -27,7 +27,7 @@ public class Obstacle : MonoBehaviour
 
         if (transform.localPosition.y < (_rectTransform.height / -2))
         {
-            PinguSlideManager.speed += 7;
+            PinguSlideManager.speed += (0.05f * (PinguSlideManager.cameraSize / 2));
             Destroy(gameObject);
         }
     }

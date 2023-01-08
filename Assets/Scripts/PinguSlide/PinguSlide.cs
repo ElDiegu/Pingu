@@ -1,27 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PinguSlide : MonoBehaviour
 {
     [Header("Pingu Data")]
     [SerializeField] private int _HP;
     [SerializeField] private GameObject _canvas;
-    [SerializeField] private GameObject _hitbox;
     [SerializeField] private float _speed;
 
     [Header("Gyroscope Logic")]
+    [SerializeField] private bool _gyroActive;
     [SerializeField] private Gyroscope _gyroscope;
     [SerializeField] private Quaternion _gyroRotation;
-    [SerializeField] private bool _gyroActive;
+    [SerializeField] private Quaternion _gyroOrientation;
 
     [Header("Touch Screen Logic")]
     [SerializeField] private Vector2 _touchStartPos;
     [SerializeField] private float _touchDirection;
 
+    [Header("Interface")]
+    [SerializeField] private TextMeshProUGUI _coinsCounter;
+    [SerializeField] private TextMeshProUGUI _healthCounter;
+    [SerializeField] private Camera _camera;
+
+    [Header("Animator")]
+    [SerializeField] private Animator _animator;
+
     void Start()
     {
-        EnableGyro();
+        EnableGyro();  
+    }
+
+    private void OnEnable()
+    {
+        _speed = _speed * (_camera.orthographicSize / 2);
+        _animator.Play("PinguSlideStart");
     }
 
     // Update is called once per frame
@@ -62,11 +77,13 @@ public class PinguSlide : MonoBehaviour
         #region Gyroscope Input Control
         if (_gyroActive)
         {
-            _gyroRotation = _gyroscope.attitude;
-
-            MovePingu(_gyroRotation.x);
+            //_gyroRotation = new Quaternion(0.5f, 0.5f, -0.5f, 0.5f) * _gyroscope.attitude * new Quaternion(0, 1, 0, 0);
+            MovePingu(_gyroscope.rotationRate.y);
         }
         #endregion
+
+        _coinsCounter.text = PinguSlideManager.coinsCollected.ToString();
+        _healthCounter.text = _HP.ToString();
     }
 
     private void EnableGyro()
@@ -80,12 +97,12 @@ public class PinguSlide : MonoBehaviour
         }
 
         _gyroActive = _gyroscope.enabled;
+        _gyroOrientation = new Quaternion(0.5f, 0.5f, -0.5f, 0.5f) * _gyroscope.attitude * new Quaternion(0, 0, 1, 0);
     }
-
     public void SufferDamage(int damage)
     {
         _HP -= damage;
-
+        Mathf.Clamp(_HP, 0, 5);
         if (_HP <= 0) PinguSlideManager.GameOver();
     }
     private void MovePingu(float direction)
@@ -96,6 +113,6 @@ public class PinguSlide : MonoBehaviour
         if (transform.localPosition.x > (_canvasSize - gameObject.GetComponent<RectTransform>().rect.width) / 2 && direction > 0) return;
         if(transform.localPosition.x < (-_canvasSize + gameObject.GetComponent<RectTransform>().rect.width) / 2 && direction < 0) return;
 
-        transform.Translate(new Vector3(direction, 0, 0) * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(direction, 0, 0) * _speed * (_camera.orthographicSize/100) * Time.deltaTime);
     }
 }

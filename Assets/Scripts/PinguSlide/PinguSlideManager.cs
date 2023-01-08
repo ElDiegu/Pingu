@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PinguSlideManager : MonoBehaviour
 {
@@ -15,10 +16,11 @@ public class PinguSlideManager : MonoBehaviour
 
     [Header("Canvas")]
     [SerializeField] private GameObject _canvas;
+    [SerializeField] private Camera _camera;
+    public static float cameraSize;
 
     [Header("Obstacles")]
     [SerializeField] private GameObject _obstaclePrefab;
-    
 
     [Header("Coins")]
     [SerializeField] private GameObject _coinPrefab;
@@ -33,7 +35,8 @@ public class PinguSlideManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        speed = _speed;
+        cameraSize = _camera.orthographicSize;
+        speed = _speed * (cameraSize / 2);
         playing = true;
         StartCoroutine(ObstacleGeneration(true));
         StartCoroutine(CoinGeneration());
@@ -43,14 +46,13 @@ public class PinguSlideManager : MonoBehaviour
         _speed = speed;
         _coinsCollected = coinsCollected;
     }
-
     private IEnumerator ObstacleGeneration(bool firstTime)
     {
         var _originalSpeed = speed;
         if(firstTime) GenerateObstacle();
         while (playing)
         {
-            yield return new WaitForSeconds(_obstacleDelay * (_originalSpeed/_speed));
+            yield return new WaitForSeconds(_obstacleDelay * (_originalSpeed/speed));
             GenerateObstacle();
         }
     }
@@ -59,29 +61,31 @@ public class PinguSlideManager : MonoBehaviour
         var _originalSpeed = speed;
         while (playing)
         {
-            yield return new WaitForSeconds(Random.Range(1, 5) * (_originalSpeed/_speed));
+            yield return new WaitForSeconds(Random.Range(1, 5) * (_originalSpeed/speed));
             GenerateCoin();
         }
     }
     private void GenerateSpawnPosition()
     {
-        _spawnPosition.y = _spawnPoint.transform.position.y;
-        var _screenSize = _canvas.GetComponent<RectTransform>().rect.width;
-        _spawnPosition.x = Random.Range(_spawnPoint.transform.position.x, 
-                                                _spawnPoint.transform.position.x + _screenSize - 
-                                                (_obstaclePrefab.GetComponent<RectTransform>().rect.width * _obstaclePrefab.GetComponent<RectTransform>().localScale.x));
+        _spawnPosition.y = _spawnPoint.transform.localPosition.y;
+        var _screenSize = _spawnPoint.GetComponent<RectTransform>().rect.width;
+        Debug.Log(_screenSize);
+        _spawnPosition.x = Random.Range(-_screenSize/2, _screenSize/2);
         _spawnPosition.z = -1.0f;
     }
     private void GenerateObstacle()
     {
         GenerateSpawnPosition();
-        Instantiate(_obstaclePrefab, _spawnPosition, new Quaternion(), _canvas.transform);
+        Debug.Log(_spawnPosition);
+        //Debug.Log(Instantiate(_obstaclePrefab, _spawnPosition, new Quaternion(), _canvas.transform).transform.localPosition);
+        Instantiate(_obstaclePrefab, _canvas.transform).transform.localPosition = _spawnPosition;
         Debug.Log("Obstacle generated");
     }
     private void GenerateCoin()
     {
         GenerateSpawnPosition();
-        Instantiate(_coinPrefab, _spawnPosition, new Quaternion(), _canvas.transform);
+        //Instantiate(_coinPrefab, _camera.ScreenToWorldPoint(_spawnPosition), new Quaternion(), _canvas.transform);
+        Instantiate(_coinPrefab, _canvas.transform).transform.localPosition = _spawnPosition;
         Debug.Log("Coin generated");
     }
     private static void StopGame()
@@ -102,6 +106,11 @@ public class PinguSlideManager : MonoBehaviour
     {
         StopGame();
         Instance._gameOverScreen.SetActive(true);
+        GameManager.coins += coinsCollected;
+        GameManager.SaveData();
     }
-    
+    public void ChangeScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
 }
