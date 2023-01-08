@@ -7,7 +7,7 @@ public class MenuJuegos : MonoBehaviour
 {
     public void BotonJuego1()
     {
-
+        SceneManager.LoadScene("PinguSlide");
     }
     public void BotonJuego2()
     {

@@ -141,6 +141,8 @@ public class PinguDice : MonoBehaviour
         DeactivatePingus();
         Vibrator.Vibrate(700);
         GameOverWindow.SetActive(true);
+        GameManager.coins += ronda * 5;
+        GameManager.SaveData();
     }
     public void VolverJugar()
     {
@@ -153,6 +155,7 @@ public class PinguDice : MonoBehaviour
         DeactivatePingus();
         SalirWindow.SetActive(true);
         Time.timeScale = 0f;
+
     }
     public void SalirSi()
     {
