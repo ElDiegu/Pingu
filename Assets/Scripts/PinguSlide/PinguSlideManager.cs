@@ -11,6 +11,7 @@ public class PinguSlideManager : MonoBehaviour
     [SerializeField] private float _speed;
     public static float speed;
     private static float _storedSpeed;
+    private static float _originalSpeed;
     public static bool playing;
     [SerializeField] private GameObject _gameOverScreen;
 
@@ -37,6 +38,7 @@ public class PinguSlideManager : MonoBehaviour
         Instance = this;
         cameraSize = _camera.orthographicSize;
         speed = _speed * (cameraSize / 2);
+        _originalSpeed = speed;
         playing = true;
         StartCoroutine(ObstacleGeneration(true));
         StartCoroutine(CoinGeneration());
@@ -48,7 +50,6 @@ public class PinguSlideManager : MonoBehaviour
     }
     private IEnumerator ObstacleGeneration(bool firstTime)
     {
-        var _originalSpeed = speed;
         if(firstTime) GenerateObstacle();
         while (playing)
         {
@@ -58,7 +59,6 @@ public class PinguSlideManager : MonoBehaviour
     }
     private IEnumerator CoinGeneration()
     {
-        var _originalSpeed = speed;
         while (playing)
         {
             yield return new WaitForSeconds(Random.Range(1, 5) * (_originalSpeed/speed));
@@ -88,19 +88,19 @@ public class PinguSlideManager : MonoBehaviour
         Instantiate(_coinPrefab, _canvas.transform).transform.localPosition = _spawnPosition;
         Debug.Log("Coin generated");
     }
-    private static void StopGame()
+    public static void StopGame()
     {
         Instance.StopAllCoroutines();
         _storedSpeed = speed;
         playing = false;
         speed = 0.0f;
     }
-    private void ResumeGame()
+    public void ResumeGame()
     {
+        speed = _storedSpeed;
+        playing = true;
         StartCoroutine(ObstacleGeneration(false));
         StartCoroutine(CoinGeneration());
-        playing = true;
-        speed = _storedSpeed;
     }
     public static void GameOver()
     {

@@ -11,6 +11,7 @@ public class ShopManager : MonoBehaviour
     [Header("Shop Displays")]
     [SerializeField] private ChangeColor _changeColor;
     [SerializeField] private GameObject _buyButton;
+    [SerializeField] private GameObject _notMoney;
 
     [Header("Original Cosmetics")]
     [SerializeField] private Material _color;
@@ -22,7 +23,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyColor(Material color)
     {
-        if (GameManager.coins < 10) return;
+        if (GameManager.coins < 10) { _notMoney.SetActive(true); return; }
         GameManager.bodyColor[color] = true;
         GameManager.coins -= 10;
         _buyButton.SetActive(false);
@@ -30,7 +31,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyHat(int hat)
     {
-        if (GameManager.coins < 20) return;
+        if (GameManager.coins < 20) { _notMoney.SetActive(true); return; }
         GameManager.hats[hat] = true;
         GameManager.coins -= 20;
         _buyButton.SetActive(false);
@@ -38,7 +39,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyEyes(Material material)
     {
-        if (GameManager.coins < 5) return;
+        if (GameManager.coins < 5) { _notMoney.SetActive(true); return; }
         GameManager.eyes[material] = true;
         GameManager.coins -= 5;
         _buyButton.SetActive(false);
