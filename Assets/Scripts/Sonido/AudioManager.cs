@@ -72,6 +72,14 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
+    public void UpdateVolume(float v)
+    {
+        foreach (Sound s in sounds)
+        {
+            s.volume = v;
+            s.source.volume = s.volume;
+        }
+    }
     public void changeVolumeSFX(float vol)
     {
         Debug.LogWarning("0000");
