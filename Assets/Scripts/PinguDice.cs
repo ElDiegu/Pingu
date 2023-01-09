@@ -155,7 +155,6 @@ public class PinguDice : MonoBehaviour
         DeactivatePingus();
         SalirWindow.SetActive(true);
         Time.timeScale = 0f;
-
     }
     public void SalirSi()
     {

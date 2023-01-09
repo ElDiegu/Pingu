@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public static Material equipedEyes;
     public static int equipedHat;
 
+    [Header("Pingu Stats")]
+    public static int hunger = 15;
+    public static int energy = 10;
+
     private void Start()
     {
         if (!Instance)
@@ -63,8 +67,12 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("savedData", 1);
         PlayerPrefs.SetInt("coins", coins);
+        PlayerPrefs.SetInt("energy", energy);
+        PlayerPrefs.SetInt("hunger", hunger);
 
-        
+        PlayerPrefs.SetInt("equipedColor", Instance.auxiliarBodyColor.IndexOf(equipedBody));
+        PlayerPrefs.SetInt("equipedEyes", Instance.auxiliarEyes.IndexOf(equipedEyes));
+        PlayerPrefs.SetInt("equipedHat", equipedHat);
 
         foreach (KeyValuePair<Material, bool> color in bodyColor) if (color.Value == true) { colorList.Append(Instance.auxiliarBodyColor.IndexOf(color.Key) + "\n"); Debug.Log("Color saved: " + Instance.auxiliarBodyColor.IndexOf(color.Key)); }
         PlayerPrefs.SetString("bodyColor", colorList.ToString());
@@ -88,6 +96,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Loading data");
 
         coins = PlayerPrefs.GetInt("coins");
+        energy = PlayerPrefs.GetInt("energy");
+        hunger = PlayerPrefs.GetInt("hunger");
 
         string[] colorList = PlayerPrefs.GetString("bodyColor").Split("\n");
         for(int i = 0; i < colorList.Length - 1; i++)
@@ -114,5 +124,9 @@ public class GameManager : MonoBehaviour
         }
 
         foreach (KeyValuePair<int, bool> hat in hats) Debug.Log(hat.Key + ":" + hat.Value);
+
+        equipedBody = Instance.auxiliarBodyColor[PlayerPrefs.GetInt("equipedColor")];
+        equipedEyes = Instance.auxiliarEyes[PlayerPrefs.GetInt("equipedEyes")];
+        equipedHat = PlayerPrefs.GetInt("equipedHats");
     }
 }

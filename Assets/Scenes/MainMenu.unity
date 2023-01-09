@@ -429,7 +429,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6fd97c9a663162540921951722c127e7, type: 2}
   - {fileID: 2100000, guid: fe0b943ca58505743b630bb151fa799f, type: 2}
   - {fileID: 2100000, guid: 16b4b6cf7c322e44eaddd34814073d51, type: 2}
-  auxiliarHat: []
 --- !u!1 &307130827
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +525,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PiplupGrave
     clip: {fileID: 8300000, guid: b40338e50b2fcce47bd6532773a6dfa0, type: 3}
+    musica: 0
+    volume: 0.5
+    pitch: 1
+    porcentaje: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Impacto
+    clip: {fileID: 8300000, guid: a1f62e6bb6d649244a90503e8785d688, type: 3}
     musica: 0
     volume: 0.5
     pitch: 1

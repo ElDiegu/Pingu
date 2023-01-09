@@ -34,6 +34,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.tag != "Player") return;
         Debug.Log("Coin Collected");
         PinguSlideManager.coinsCollected++;
+        FindObjectOfType<AudioManager>().Play("BuyItem");
         Destroy(gameObject);
     }
 

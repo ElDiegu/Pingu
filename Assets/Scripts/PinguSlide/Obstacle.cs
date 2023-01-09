@@ -36,7 +36,7 @@ public class Obstacle : MonoBehaviour
     {
         Debug.Log("OnTriggerEnter");
         if (collision.gameObject.tag != "Player") return;
-
+        FindObjectOfType<AudioManager>().Play("Impacto");
         collision.gameObject.GetComponent<PinguSlide>().SufferDamage(_sprites.IndexOf(_image.sprite) + 1);
         Destroy(gameObject);
     }

@@ -39,6 +39,7 @@ public class PinguSlideManager : MonoBehaviour
         cameraSize = _camera.orthographicSize;
         speed = _speed * (cameraSize / 2);
         _originalSpeed = speed;
+        coinsCollected = 0;
         playing = true;
         StartCoroutine(ObstacleGeneration(true));
         StartCoroutine(CoinGeneration());

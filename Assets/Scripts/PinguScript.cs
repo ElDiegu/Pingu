@@ -39,7 +39,6 @@ public class PinguScript : MonoBehaviour
             case 1:
                 //animación de alimentar
                 fish.SetActive(true);
-                hambre.value += 5;
                 anim.Play("PinguEating");
                 state = 0;
                 //fish.SetActive(false);

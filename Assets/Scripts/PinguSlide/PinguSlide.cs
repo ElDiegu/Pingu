@@ -101,8 +101,7 @@ public class PinguSlide : MonoBehaviour
     }
     public void SufferDamage(int damage)
     {
-        _HP -= damage;
-        Mathf.Clamp(_HP, 0, 5);
+        _HP = Mathf.Clamp(_HP - 1, 0, 5);
         if (_HP <= 0) PinguSlideManager.GameOver();
     }
     private void MovePingu(float direction)
